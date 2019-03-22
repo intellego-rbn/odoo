@@ -22,9 +22,11 @@ class Team(models.Model):
     opportunities_count = fields.Integer(
         compute='_compute_opportunities',
         string='Number of open opportunities', readonly=True)
-    opportunities_amount = fields.Integer(
+    opportunities_amount = fields.Monetary(
+        string='Opportunities Revenues', 
+        currency_field='company_currency,
         compute='_compute_opportunities',
-        string='Opportunities Revenues', readonly=True)
+        readonly=True)
     dashboard_graph_model = fields.Selection(selection_add=[('crm.lead', 'Pipeline')])
     dashboard_graph_period_pipeline = fields.Selection([
         ('week', 'Within a Week'),
